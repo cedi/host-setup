@@ -1,0 +1,10 @@
+---
+
+- name: Call setup playbook
+  import_playbook: ./setup.yml
+
+- name: Call prometheus playbook
+  import_playbook: ./prometheus.yml
+
+- name: Call grafana playbook
+  import_playbook: ./grafana.yml

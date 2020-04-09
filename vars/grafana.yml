@@ -1,0 +1,20 @@
+grafana_address: "localhost"
+grafana_port: 3000
+grafana_auth:
+  anonymous:
+    org_name: "localhost"
+    org_role: Viewer
+  basic:
+    enabled: true
+
+grafana_security:
+  admin_user: admin
+  admin_password: "admin"
+
+grafana_datasources:
+  - name: "Prometheus"
+    type: "prometheus"
+    access: "server"
+    url: "http://localhost:9090"
+    isDefault: true
+

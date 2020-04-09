@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  vars_files:
+    - vars/prometheus.yml
+
+  roles:
+  - ansible-node-exporter
+  - ansible-prometheus
+
