@@ -1,6 +1,12 @@
 prometheus_web_listen_address: "localhost:9090"
 prometheus_web_external_url: "localhost:9090"
 
+prometheus_global:
+  scrape_interval: 5s
+  scrape_timeout: 5s
+  evaluation_interval: 5s
+
+
 prometheus_scrape_configs:
   - job_name: "docker_exporter"
     metrics_path: "/metrics"
