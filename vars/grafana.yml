@@ -22,3 +22,6 @@ grafana_dashboards:
   - dashboard_id: '12062'
     revision_id: '1'
     datasource: 'Prometheus'
+  - dashboard_id: '11467'
+    revision_id: '2'
+    datasource: 'Prometheus'

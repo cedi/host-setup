@@ -17,6 +17,8 @@ base_system_packages:
   - python3-apt
   - python3-pip
   - python3-virtualenv
+  - python2
+  - python-pip
   - graphviz
   - sudo
   - ufw

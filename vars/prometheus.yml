@@ -24,6 +24,7 @@ prometheus_targets:
   docker_exporter:
   - targets:
       - localhost:9323
+      - localhost:9417
 
   node_exporter:
   - targets:

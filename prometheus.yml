@@ -1,4 +1,5 @@
 ---
+
 - hosts: localhost
   vars_files:
     - vars/prometheus.yml
@@ -7,3 +8,15 @@
   - ansible-node-exporter
   - ansible-prometheus
 
+  tasks:
+  - name: Start docker_exporter
+    docker_container:
+      name: docker_exporter
+      image: prometheusnet/docker_exporter
+      volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      published_ports:
+      - 9417:9417
+      restart: yes
+      restart_policy: always
+      detach: yes

@@ -23,11 +23,21 @@
   debug:
     msg: "{{ base_pip_packages }}"
 
-#- name: Install pip packages
-#  become: true
-#  pip:
-#    name: "{{ base_pip_packages }}"
-#    executable: pip3
+- name: Install pip packages
+  become: true
+  pip:
+    name: "{{ base_pip_packages }}"
+    executable: pip3
+
+- name: Install python2 pip packages
+  debug:
+    msg: "{{ base_pip_packages }}"
+
+- name: Install python2 pip packages
+  become: true
+  pip:
+    name: "{{ base_pip2_packages }}"
+    executable: pip
 
 - name: Install cargo packages
   debug:
