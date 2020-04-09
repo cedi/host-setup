@@ -1,0 +1,8 @@
+---
+
+base_cargo_packages:
+  - exa
+
+base_pip_packages:
+  - neovim-remote
+  - awscli

@@ -1,0 +1,44 @@
+---
+
+- name: Include user specific variables
+  include_vars: "default_software.yml"
+
+- name: Update apt-get repo and cache
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    cache_valid_time: 3600
+    upgrade: safe
+
+- name: Install basic packages
+  debug:
+    msg: "{{ base_system_packages }}"
+
+- name: Install basic packages
+  apt:
+    name: "{{ base_system_packages }}"
+    state: present
+
+- name: Install pip packages
+  debug:
+    msg: "{{ base_pip_packages }}"
+
+#- name: Install pip packages
+#  become: true
+#  pip:
+#    name: "{{ base_pip_packages }}"
+#    executable: pip3
+
+- name: Install cargo packages
+  debug:
+    msg: "{{ base_cargo_packages }}"
+
+- name: Install cargo packages
+  shell:
+    cmd: cargo install "{{ item }}"
+  loop: "{{ base_cargo_packages }}"
+
+- name: Install docker
+  import_tasks: docker.yml
+
+

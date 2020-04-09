@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars_files:
+    - vars/localhost.yml
+
+  roles:
+  - ansible-base
+  - ansible-prometheus
+  - ansible-grafana
+  - ansible-node-exporter
+

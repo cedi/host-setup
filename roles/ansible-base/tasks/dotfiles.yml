@@ -1,0 +1,19 @@
+- name: Clone the dotfile repository
+  git:
+    repo: "{{ item.dotfiles }}"
+    dest: "/home/{{ item.name }}/.config/dotfiles"
+    update: yes
+  loop: "{{ users }}"
+
+- name: Clone the nvim repository
+  git:
+    repo: "{{ item.nvim }}"
+    dest: "/home/{{ item.name }}/.config/nvim"
+    update: yes
+  loop: "{{ users }}"
+
+- name: install dotfiles
+  shell: "cd /home/{{ item.name }}/.config/dotfiles && sh install.sh"
+  loop: "{{ users }}"
+
+

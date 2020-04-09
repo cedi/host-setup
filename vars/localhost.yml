@@ -1,0 +1,46 @@
+grafana_address: "localhost"
+grafana_port: 3000
+grafana_auth:
+  anonymous:
+    org_name: "localhost"
+    org_role: Viewer
+  basic:
+    enabled: true
+
+grafana_security:
+  admin_user: admin
+  admin_password: "admin"
+
+grafana_datasources:
+  - name: "Prometheus"
+    type: "prometheus"
+    access: "server"
+    url: "http://localhost:9090"
+    isDefault: true
+
+prometheus_web_listen_address: "localhost:9090"
+prometheus_web_external_url: "localhost:9090"
+
+prometheus_scrape_configs:
+  - job_name: "docker_exporter"
+    metrics_path: "/metrics"
+    file_sd_configs:
+    - files:
+      - "{{ prometheus_config_dir }}/file_sd/docker_exporter.yml"
+
+  - job_name: "node_exporter"
+    metrics_path: "/metrics"
+    file_sd_configs:
+    - files:
+      - "{{ prometheus_config_dir }}/file_sd/node_exporter.yml"
+
+prometheus_targets:
+  docker_exporter:
+  - targets:
+    - localhost
+
+  node_exporter:
+  - targets:
+    - localhost:9100
+
+

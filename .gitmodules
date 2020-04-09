@@ -1,0 +1,9 @@
+[submodule "roles/ansible-grafana"]
+	path = roles/ansible-grafana
+	url = https://github.com/cloudalchemy/ansible-grafana.git
+[submodule "roles/ansible-prometheus"]
+	path = roles/ansible-prometheus
+	url = git@github.com:cloudalchemy/ansible-prometheus.git
+[submodule "roles/ansible-node-exporter"]
+	path = roles/ansible-node-exporter
+	url = git@github.com:cloudalchemy/ansible-node-exporter.git

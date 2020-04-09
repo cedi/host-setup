@@ -1,0 +1,40 @@
+---
+
+- name: Update apt-get repo and cache
+  apt:
+    update_cache: yes
+
+- name: Add Docker's official GPG key
+  shell:
+    cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+- name: Add Docker PPA repository
+  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+- name: Update apt-get repo and cache
+  apt:
+    update_cache: yes
+
+- name: Install docker packages
+  apt:
+    name: "{{ base_docker_packages }}"
+    state: present
+
+- name: Install 90-docker.conf to /etc/sysctl.d/90-docker.conf
+  template:
+    src: 90-docker.j2
+    dest: /etc/sysctl.d/90-docker.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install daemon.json to /etc/docker/
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
+
+
+

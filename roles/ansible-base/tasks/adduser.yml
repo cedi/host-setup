@@ -1,0 +1,37 @@
+---
+
+- name: Ensure users groups exists
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ user_groups }}"
+
+- name: create users
+  debug:
+    msg: "User {{ item.name }}, Login Shell: {{ item.shell }}"
+  loop: "{{ users }}"
+
+- name: create users
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+    password: "{{ item.password }}"
+    update_password: always
+    state: present
+  loop: "{{ users }}"
+
+- name: Add SSH public keys
+  authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.public_keys }}"
+    state: present
+  loop: "{{ users }}"
+
+- name: Generate SSH-Keys if they don't exist
+  openssh_keypair:
+    path: "/home/{{ item.name }}/.ssh/id_ed25519_default"
+    type: ed25519
+    state: present
+    force: false
+  loop: "{{ users }}"
+
