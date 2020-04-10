@@ -40,7 +40,8 @@
     msg: "{{ base_cargo_packages }}"
 
 - name: Install cargo packages
+  become: true
   shell:
-    cmd: cargo install "{{ item }}"
+    cmd: sudo cargo install "{{ item }}" --root /usr/loca/bin
   loop: "{{ base_cargo_packages }}"
 

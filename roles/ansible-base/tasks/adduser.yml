@@ -43,6 +43,7 @@
     repo: "{{ item.nvim }}"
     dest: "/home/{{ item.name }}/.config/nvim"
     update: yes
+    recursive: yes
   loop: "{{ users }}"
 
 - name: Install oh-my-zsh
