@@ -35,6 +35,7 @@
     repo: "{{ item.dotfiles }}"
     dest: "/home/{{ item.name }}/.config/dotfiles"
     update: yes
+    recursive: yes
   loop: "{{ users }}"
 
 - name: Clone the nvim repository
