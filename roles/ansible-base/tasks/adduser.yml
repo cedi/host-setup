@@ -1,11 +1,5 @@
 ---
 
-- name: Ensure users groups exists
-  group:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ user_groups }}"
-
 - name: create users
   debug:
     msg: "User {{ item.name }}, Login Shell: {{ item.shell }}"
@@ -16,6 +10,7 @@
     name: "{{ item.name }}"
     shell: "{{ item.shell }}"
     password: "{{ item.password }}"
+    groups: "{{ item.groups }}"
     update_password: always
     state: present
   loop: "{{ users }}"
@@ -33,5 +28,35 @@
     type: ed25519
     state: present
     force: false
+  loop: "{{ users }}"
+
+- name: Clone the dotfile repository
+  git:
+    repo: "{{ item.dotfiles }}"
+    dest: "/home/{{ item.name }}/.config/dotfiles"
+    update: yes
+  loop: "{{ users }}"
+
+- name: Clone the nvim repository
+  git:
+    repo: "{{ item.nvim }}"
+    dest: "/home/{{ item.name }}/.config/nvim"
+    update: yes
+  loop: "{{ users }}"
+
+- name: Install oh-my-zsh
+  shell: |
+    cd "/home/{{ item.name }}/"
+    curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    export ZSH=${ZSH:-/home/{{ item.name }}/.oh-my-zsh}
+    sh install.sh --unattended
+    rm install.sh
+  loop: "{{ users }}"
+
+- name: install dotfiles
+  shell: |
+    cd /home/{{ item.name }}/.config/dotfiles
+    HOME=/home/{{ item.name }}/
+    sh install.sh
   loop: "{{ users }}"
 

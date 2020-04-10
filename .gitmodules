@@ -7,3 +7,6 @@
 [submodule "roles/ansible-node-exporter"]
 	path = roles/ansible-node-exporter
 	url = git@github.com:cloudalchemy/ansible-node-exporter.git
+[submodule "roles/ansible-docker"]
+	path = roles/ansible-docker
+	url = https://github.com/open-infrastructure/ansible-docker.git

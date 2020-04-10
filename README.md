@@ -32,20 +32,11 @@ ansible-playbook setup.yml --inventory=inventory.yml --ask-become-pass
 ```
 
 
-### Prometheus
+### Monitoring
 
-This is used if you do changes to the prometheus setup
-
-```
-ansible-playbook prometheus.yml --inventory=inventory.yml --ask-become-pass
-```
-
-### Grafana
-
-This is used if you do changes to the grafana setup
+This is used if you do changes to the monitoring setup
 
 ```
-ansible-playbook grafana.yml --inventory=inventory.yml --ask-become-pass
+ansible-playbook monitoring.yml --inventory=inventory.yml --ask-become-pass
 ```
-
 

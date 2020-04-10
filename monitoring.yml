@@ -2,7 +2,10 @@
 - hosts: localhost
   vars_files:
     - vars/grafana.yml
+    - vars/prometheus.yml
 
   roles:
+  - ansible-node-exporter
+  - ansible-prometheus
   - ansible-grafana
 

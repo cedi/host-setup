@@ -1,5 +1,0 @@
----
-
-base_user_groups:
-  - sudo
-  - docker

@@ -2,14 +2,8 @@
 
 - name: Check os compatability with this role
   assert:
-    that: "ansible_os_family|lower in base__supported_os_families"
+    that: "ansible_os_family|lower == 'debian'"
     msg: "{{ ansible_os_family }} is probably not supported by this role"
-
-- name: Include os specific variables
-  include_vars: "{{ ansible_os_family|lower }}.yml"
-
-- name: Include user specific variables
-  include_vars: "user.yml"
 
 - name: Install dependencies required by this role
   import_tasks: install.yml
@@ -18,10 +12,3 @@
 - name: Add ansible user
   import_tasks: adduser.yml
   become: true
-
-- name: Apply ufw firewall rule to allow SSH
-  import_tasks: firewall.yml
-  become: true
-
-- name: Install dotfiles
-  import_tasks: dotfiles.yml

@@ -1,5 +1,9 @@
 ---
 
 - hosts: localhost
+  vars_files:
+    - vars/users.yml
+
   roles:
   - ansible-base
+  - ansible-docker

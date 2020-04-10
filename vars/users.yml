@@ -1,15 +1,12 @@
 ---
 
-user_groups:
-  - sudo
-  - docker
-
 users:
   - name: cedi
     shell: /bin/zsh
     password: $6$VAsB3DtoecS8YYBK$bahGo8H0bM1E7n4L1loTk2mLa1Zv59KN6PnKlpzjwpCtRMRHvACvedxjtdE6nTOOSMWkO9AoFEq0WlOFgFPEq0
-    groups: "{{ user_groups }}"
+    groups:
+      - sudo
+      - docker
     public_keys: https://github.com/cedi.keys
     dotfiles: https://github.com/cedi/dotfiles.git
     nvim: https://github.com/cedi/vim-config.git
-
