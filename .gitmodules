@@ -10,3 +10,6 @@
 [submodule "roles/ansible-docker"]
 	path = roles/ansible-docker
 	url = https://github.com/open-infrastructure/ansible-docker.git
+[submodule "roles/ansible-base"]
+	path = roles/ansible-base
+	url = https://github.com/open-infrastructure/ansible-base.git
