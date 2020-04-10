@@ -10,3 +10,4 @@ users:
     public_keys: https://github.com/cedi.keys
     dotfiles: https://github.com/cedi/dotfiles.git
     nvim: https://github.com/cedi/vim-config.git
+

@@ -3,6 +3,7 @@
 - hosts: localhost
   vars_files:
     - vars/users.yml
+    - vars/software.yml
 
   roles:
   - ansible-base
