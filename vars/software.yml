@@ -42,3 +42,6 @@ base_pip_packages:
 
 base_pip2_packages:
   - docker-py
+
+base_snap_packages:
+  - mailspring
