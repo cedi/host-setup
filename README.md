@@ -9,8 +9,7 @@ This will install some basic software, required for my development workflow, as 
 ## Setup
 
 ```
-git submodule init
-git submodule update --recursive
+git submodule update --init
 ```
 
 ## Run Ansible
