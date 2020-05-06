@@ -1,4 +1,5 @@
 ---
+
 - hosts: localhost
   vars_files:
     - vars/grafana.yml
@@ -6,6 +7,6 @@
 
   roles:
   - ansible-node-exporter
+  - ansible-blackbox-exporter
   - ansible-prometheus
   - ansible-grafana
-

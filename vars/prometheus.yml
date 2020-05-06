@@ -20,14 +20,47 @@ prometheus_scrape_configs:
     - files:
       - "{{ prometheus_config_dir }}/file_sd/node_exporter.yml"
 
+  - job_name: blackbox_ping_exporter
+    metrics_path: "/probe"
+    file_sd_configs:
+    - files:
+      - "{{ prometheus_config_dir }}/file_sd/blackbox_ping_exporter.yml"
+    params:
+      module: [icmp_test]
+
+    relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+
 prometheus_targets:
   docker_exporter:
   - targets:
-      - localhost:9323
-      - localhost:9417
+    - localhost:9323
+    - localhost:9417
 
   node_exporter:
   - targets:
     - localhost:9100
 
+  blackbox_ping_exporter:
+  - targets:
+    - 1.1.1.1
+    - 8.8.8.8
 
+blackbox_exporter_web_listen_address: "127.0.0.1:9115"
+blackbox_exporter_configuration_modules:
+  icmp_test:
+    prober: icmp
+    timeout: 10s
+    icmp:
+      preferred_ip_protocol: ip4
+  dns_test:
+    prober: dns
+    timeout: 10s
+    dns:
+      preferred_ip_protocol: ip4
+      query_name: "www.google.com"

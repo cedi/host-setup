@@ -13,3 +13,6 @@
 [submodule "roles/ansible-base"]
 	path = roles/ansible-base
 	url = https://github.com/cedi/ansible-base.git
+[submodule "roles/ansible-blackbox-exporter"]
+	path = roles/ansible-blackbox-exporter
+	url = git@github.com:cloudalchemy/ansible-blackbox-exporter.git
