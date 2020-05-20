@@ -18,7 +18,6 @@ base_system_packages:
   - python3-pip
   - python3-virtualenv
   - python2
-  - python-pip
   - graphviz
   - sudo
   - ufw
@@ -39,6 +38,7 @@ base_pip_packages:
   - neovim-remote
   - awscli
   - docker
+  - thefuck
 
 base_pip2_packages:
   - docker-py
